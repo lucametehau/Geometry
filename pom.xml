@@ -60,7 +60,7 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <configuration>
                     <tasks>
-                        <copy file="target/Geometry-1.0-SNAPSHOT.jar" todir="c:\CoderDojo\spigot/plugins"/>
+                        <copy file="target/Geometry-1.0-SNAPSHOT.jar" todir="c:\CoderDojo\spigot\plugins"/>
                     </tasks>
                 </configuration>
                 <executions>
