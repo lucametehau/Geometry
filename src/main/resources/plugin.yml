@@ -3,7 +3,7 @@ version: 1.0-SNAPSHOT
 author: CoderDojo Ninja
 main: ro.coderdojo.geometry.Main
 commands:
-  CoderDojo:
+  Sphere:
     description: Execute example command
     usage: /<command>
     permission: <plugin name>.basic
