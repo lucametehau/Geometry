@@ -9,9 +9,9 @@ public class Main extends JavaPlugin {
 		
 		getServer().getPluginManager().registerEvents(new EventsListener(), this);
 		
-                this.getCommand("cube").setExecutor(new CoderDojoCommand());
+                this.getCommand("cube").setExecutor(new CubeCommand());
 
-		this.getCommand("Sphere").setExecutor(new CoderDojoCommand());
+		this.getCommand("Sphere").setExecutor(new SphereCommand());
 
     }
 
