@@ -11,7 +11,7 @@ public class Main extends JavaPlugin {
 		
                 this.getCommand("cube").setExecutor(new CubeCommand(this));
 
-		this.getCommand("Sphere").setExecutor(new SphereCommand());
+		this.getCommand("Sphere").setExecutor(new SphereCommand(this));
 
     }
 
