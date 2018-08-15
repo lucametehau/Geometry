@@ -11,5 +11,4 @@ commands:
   cube:
     description: Execute example cube
     usage: /<command>
-    permission: <plugin name>.basic
     permission-message: You don't have <permission>
