@@ -25,18 +25,13 @@ public class CubeCommand implements CommandExecutor {
         new BukkitRunnable() {
             public void run() {
             Player player = (Player) commandSender;
-
             final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(5);
-            Location inFrontLoc = player.getLocation().add(fb_direction);
-
-            int x = inFrontLoc.getBlockX();
-            int y = inFrontLoc.getBlockY();
-            int z = inFrontLoc.getBlockZ();
-            for (int x1 = 1; x1 < Integer.valueOf(args[0]); x1++) {
-                for (int y1 = 1; y1 < Integer.valueOf(args[1]); y1++) {
-                    for (int z1 = 1; z1 < Integer.valueOf(args[2]); z1++) {
-                        Location loc = new Location(player.getLocation().getWorld(), x + x1 + 10, y + y1 + 10, z + z1);
-                        loc.getBlock().setType(player.getInventory().getItemInMainHand().getType());
+            
+            Location inFrontLoc = player.getLocation().add(fb_direction);            
+            for (int x = 1; x < Integer.valueOf(args[0]); x++) {
+                for (int y = 1; y < Integer.valueOf(args[1]); y++) {
+                    for (int z = 1; z < Integer.valueOf(args[2]); z++) {
+                        inFrontLoc.clone().add(x,y,z).getBlock().setType(player.getInventory().getItemInMainHand().getType());
                     }
                 }
             }
