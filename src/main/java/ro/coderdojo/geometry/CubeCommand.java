@@ -8,6 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 public class CubeCommand implements CommandExecutor {
 
@@ -20,11 +22,16 @@ public class CubeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
 
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+        new BukkitRunnable() {
+            public void run() {
             Player player = (Player) commandSender;
-            int x = player.getLocation().getBlockX();
-            int y = player.getLocation().getBlockY();
-            int z = player.getLocation().getBlockZ();
+
+            final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(5);
+            Location inFrontLoc = player.getLocation().add(fb_direction);
+
+            int x = inFrontLoc.getBlockX();
+            int y = inFrontLoc.getBlockY();
+            int z = inFrontLoc.getBlockZ();
             for (int x1 = 1; x1 < Integer.valueOf(args[0]); x1++) {
                 for (int y1 = 1; y1 < Integer.valueOf(args[1]); y1++) {
                     for (int z1 = 1; z1 < Integer.valueOf(args[2]); z1++) {
@@ -33,7 +40,8 @@ public class CubeCommand implements CommandExecutor {
                     }
                 }
             }
-        });
+        }
+            }.runTask(plugin);
 
         commandSender.sendMessage("Ai reușit să creezi o comandă în Minecraft cu Spigot");
         return true;

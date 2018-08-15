@@ -23,7 +23,7 @@ public class SphereCommand implements CommandExecutor {
         Player player;
         player = (Player) commandSender;
 
-        final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(10);
+        final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(Integer.valueOf(args[0]));
         Location centre = player.getLocation().add(fb_direction);
 
         new BukkitRunnable() {
