@@ -12,3 +12,11 @@ commands:
     description: Execute example cube
     usage: /<command>
     permission-message: You don't have <permission>
+  cylinder:
+    description: Execute example cube
+    usage: /<command>
+    permission-message: You don't have <permission>
+  prism:
+    description: Execute example cube
+    usage: /<command>
+    permission-message: You don't have <permission>

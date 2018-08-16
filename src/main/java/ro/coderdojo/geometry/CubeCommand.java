@@ -26,7 +26,7 @@ public class CubeCommand implements CommandExecutor {
         new BukkitRunnable() {
             public void run() {
             Player player = (Player) commandSender;
-            final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(5);
+            final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(Integer.valueOf(args[0]));
             
             Location inFrontLoc = player.getLocation().add(fb_direction);            
             for (int x = 1; x < Integer.valueOf(args[0]); x++) {
@@ -41,7 +41,6 @@ public class CubeCommand implements CommandExecutor {
         }
             }.runTask(plugin);
 
-        commandSender.sendMessage("Ai reușit să creezi o comandă în Minecraft cu Spigot");
         return true;
     }
 }
