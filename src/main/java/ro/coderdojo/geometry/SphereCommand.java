@@ -2,6 +2,7 @@ package ro.coderdojo.geometry;
 
 import static java.lang.Math.sqrt;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,8 +34,9 @@ public class SphereCommand implements CommandExecutor {
                     for (int j = -x; j <= x; j++) {
                         for (int k = -x; k <= x; k++) {
                             if (sqrt(i * i + j * j + k * k) <= x) {
-                                Location loc = centre.clone().add(i, j, k);
-                                loc.getBlock().setType(player.getInventory().getItemInMainHand().getType());
+                                Block block = centre.clone().add(i, k, j).getBlock();
+                                block.setType(player.getInventory().getItemInMainHand().getType());
+                                block.setData(player.getInventory().getItemInMainHand().getData().getData());
                             }
                         }
                     }

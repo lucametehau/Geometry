@@ -16,6 +16,8 @@ public class Main extends JavaPlugin {
         this.getCommand("cylinder").setExecutor(new CylinderCommand(this));
         
         this.getCommand("prism").setExecutor(new PrismCommand(this));
+        
+        this.getCommand("infinitycolumn").setExecutor(new InfinityColumnCommand(this));
 
     }
 

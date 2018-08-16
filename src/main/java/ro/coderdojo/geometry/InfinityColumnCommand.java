@@ -42,10 +42,21 @@ public class InfinityColumnCommand implements CommandExecutor{
             
                 for(int k = 1; k <= y; k++) {
                     for(int i = 1; i <= x; i++) {
-                        for(int j = i; j <= x - i + 1; j++) {
-                            // Block block = inFrontLoc.clone().add(x,y,z).getBlock();
-                            // block.setType(player.getInventory().getItemInMainHand().getType());
-                            // block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                        for(int j = -(i - 1); j <= i - 1; j++) {
+                            for(int l = -(i - 1); l <= i - 1; l++) {
+                                Block block = inFrontLoc.clone().add(j, (k - 1) * (2 * x - 1) + i, l).getBlock();
+                                block.setType(player.getInventory().getItemInMainHand().getType());
+                                block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                            }
+                        }
+                    }
+                    for(int i = x + 1; i <= 2 * x - 1; i++) {
+                        for(int j = -(2 * x - i - 1); j <= 2 * x - i - 1; j++) {
+                            for(int l = -(2 * x - i - 1); l <= 2 * x - i - 1; l++) {
+                                Block block = inFrontLoc.clone().add(j, (k - 1) * (2 * x - 1) + i, l).getBlock();
+                                block.setType(player.getInventory().getItemInMainHand().getType());
+                                block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                            }
                         }
                     }
                 }

@@ -20,3 +20,7 @@ commands:
     description: Execute example cube
     usage: /<command>
     permission-message: You don't have <permission>
+  infinitycolumn:
+    description: Execute example cube
+    usage: /<command>
+    permission-message: You don't have <permission>
