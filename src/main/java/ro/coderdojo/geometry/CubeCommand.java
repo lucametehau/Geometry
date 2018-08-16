@@ -3,6 +3,7 @@ package ro.coderdojo.geometry;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +32,9 @@ public class CubeCommand implements CommandExecutor {
             for (int x = 1; x < Integer.valueOf(args[0]); x++) {
                 for (int y = 1; y < Integer.valueOf(args[1]); y++) {
                     for (int z = 1; z < Integer.valueOf(args[2]); z++) {
-                        inFrontLoc.clone().add(x,y,z).getBlock().setType(player.getInventory().getItemInMainHand().getType());
+                        Block block = inFrontLoc.clone().add(x,y,z).getBlock();
+                        block.setType(player.getInventory().getItemInMainHand().getType());
+                        block.setData(player.getInventory().getItemInMainHand().getData().getData());
                     }
                 }
             }
