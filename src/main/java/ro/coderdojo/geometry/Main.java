@@ -13,6 +13,10 @@ public class Main extends JavaPlugin {
 
         this.getCommand("Sphere").setExecutor(new SphereCommand(this));
 
+        this.getCommand("cylinder").setExecutor(new CylinderCommand(this));
+        
+        this.getCommand("prism").setExecutor(new PrismCommand(this));
+
     }
 
 }
