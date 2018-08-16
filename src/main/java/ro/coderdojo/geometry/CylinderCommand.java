@@ -7,6 +7,7 @@ package ro.coderdojo.geometry;
 
 import static java.lang.Math.sqrt;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,7 +45,10 @@ public class CylinderCommand implements CommandExecutor {
                     for(int i = -x; i <= x; i++) {
                         for(int j = -x; j <= x; j++) {
                             if(sqrt(i * i + j * j) <= x) {
-                                inFrontLoc.clone().add(i, k, j).getBlock().setType(player.getInventory().getItemInMainHand().getType());
+                                
+                                Block block = inFrontLoc.clone().add(i, k, j).getBlock();
+                                block.setType(player.getInventory().getItemInMainHand().getType());
+                                block.setData(player.getInventory().getItemInMainHand().getData().getData());
                             }
                         }
                     }

@@ -19,10 +19,10 @@ import org.bukkit.util.Vector;
  *
  * @author LMM
  */
-public class PrismCommand implements CommandExecutor{
+public class InfinityColumnCommand implements CommandExecutor{
     JavaPlugin plugin;
 
-    public PrismCommand(JavaPlugin plugin) {
+    public InfinityColumnCommand(JavaPlugin plugin) {
         this.plugin = plugin;
     }
     
@@ -43,9 +43,9 @@ public class PrismCommand implements CommandExecutor{
                 for(int k = 1; k <= y; k++) {
                     for(int i = 1; i <= x; i++) {
                         for(int j = i; j <= x - i + 1; j++) {
-                            Block block = inFrontLoc.clone().add(i, k, j).getBlock();
-                            block.setType(player.getInventory().getItemInMainHand().getType());
-                            block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                            // Block block = inFrontLoc.clone().add(x,y,z).getBlock();
+                            // block.setType(player.getInventory().getItemInMainHand().getType());
+                            // block.setData(player.getInventory().getItemInMainHand().getData().getData());
                         }
                     }
                 }
