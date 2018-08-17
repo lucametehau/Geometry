@@ -39,7 +39,7 @@ public class CubeCommand implements CommandExecutor {
                                 do {
                                     Random rnd = new Random();
                                     rndIdx = rnd.nextInt(all.length);
-                                    if (all[rndIdx].isBlock() && all[rndIdx] != Material.WATER && all[rndIdx] != Material.LAVA) {
+                                    if (all[rndIdx].isBlock()) {
                                         break;
                                     }
                                 } while (true);
