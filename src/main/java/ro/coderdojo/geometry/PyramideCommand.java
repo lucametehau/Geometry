@@ -36,7 +36,7 @@ public class PyramideCommand implements CommandExecutor {
         new BukkitRunnable() {
             public void run() {
                 Player player = (Player) commandSender;
-                final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(Integer.valueOf(args[0]));
+                final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(Integer.valueOf(args[0])+3);
 
                 Location inFrontLoc = player.getLocation().add(fb_direction);
                 for (int z = 1; z < Integer.valueOf(args[0]); z++) {

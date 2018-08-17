@@ -37,7 +37,7 @@ public class CylinderCommand implements CommandExecutor {
         new BukkitRunnable() {
             public void run() {
                 Player player = (Player) commandSender;
-                final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(3 * Integer.valueOf(args[0]));
+                final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply( Integer.valueOf(args[0])+3);
 
                 Location inFrontLoc = player.getLocation().add(fb_direction);
 
