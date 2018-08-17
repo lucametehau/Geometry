@@ -28,3 +28,7 @@ commands:
     description: Execute example cube
     usage: /<command>
     permission-message: You don't have <permission>
+  help:
+    description: Execute example cube
+    usage: /<command>
+    permission-message: You don't have <permission>

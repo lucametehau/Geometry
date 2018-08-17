@@ -21,6 +21,7 @@ public class Main extends JavaPlugin {
         
         this.getCommand("pyramide").setExecutor(new PyramideCommand(this));
 
+        this.getCommand("help").setExecutor(new HelpCommand());
     }
 
 }

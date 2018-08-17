@@ -1,7 +1,9 @@
 package ro.coderdojo.geometry;
 
 import static java.lang.Math.sqrt;
+import java.util.Random;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,9 +26,9 @@ public class SphereCommand implements CommandExecutor {
         Player player;
         player = (Player) commandSender;
 
-        final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(Integer.valueOf(args[0]));
+        final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(3 * Integer.valueOf(args[0]));
         Location centre = player.getLocation().add(fb_direction);
-                
+
         new BukkitRunnable() {
             public void run() {
                 int x = Integer.valueOf(args[0]);
@@ -34,9 +36,24 @@ public class SphereCommand implements CommandExecutor {
                     for (int j = -x; j <= x; j++) {
                         for (int k = -x; k <= x; k++) {
                             if (sqrt(i * i + j * j + k * k) <= x) {
-                                Block block = centre.clone().add(i, k, j).getBlock();
-                                block.setType(player.getInventory().getItemInMainHand().getType());
-                                block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                                int rndIdx;
+                                if (args.length > 1 && "r".equals(args[1])) {
+                                    Material[] all = Material.values();
+                                    do {
+                                        Random rnd = new Random();
+                                        rndIdx = rnd.nextInt(all.length);
+                                        if (all[rndIdx].isBlock() && all[rndIdx] != Material.WATER && all[rndIdx] != Material.LAVA) {
+                                            break;
+                                        }
+                                    } while (true);
+
+                                    Block block = centre.clone().add(i, k, j).getBlock();
+                                    block.setType(all[rndIdx]);
+                                } else {
+                                    Block block = centre.clone().add(i, k, j).getBlock();
+                                    block.setType(player.getInventory().getItemInMainHand().getType());
+                                    block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                                }
                             }
                         }
                     }

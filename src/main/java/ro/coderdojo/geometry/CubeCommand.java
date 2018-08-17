@@ -1,5 +1,6 @@
 package ro.coderdojo.geometry;
 
+import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,21 +26,36 @@ public class CubeCommand implements CommandExecutor {
 
         new BukkitRunnable() {
             public void run() {
-            Player player = (Player) commandSender;
-            final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(Integer.valueOf(args[0]));
-            
-            Location inFrontLoc = player.getLocation().add(fb_direction);            
-            for (int x = 1; x < Integer.valueOf(args[0]); x++) {
-                for (int y = 1; y < Integer.valueOf(args[1]); y++) {
-                    for (int z = 1; z < Integer.valueOf(args[2]); z++) {
-                        Block block = inFrontLoc.clone().add(x,y,z).getBlock();
-                        block.setType(player.getInventory().getItemInMainHand().getType());
-                        block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                Player player = (Player) commandSender;
+                final Vector fb_direction = player.getEyeLocation().getDirection().normalize().multiply(3 * Integer.valueOf(args[0]));
+
+                Location inFrontLoc = player.getLocation().add(fb_direction);
+                for (int x = 1; x < Integer.valueOf(args[0]); x++) {
+                    for (int y = 1; y < Integer.valueOf(args[1]); y++) {
+                        for (int z = 1; z < Integer.valueOf(args[2]); z++) {
+                            int rndIdx;
+                            if (args.length > 3 && "r".equals(args[3])) {
+                                Material[] all = Material.values();
+                                do {
+                                    Random rnd = new Random();
+                                    rndIdx = rnd.nextInt(all.length);
+                                    if (all[rndIdx].isBlock() && all[rndIdx] != Material.WATER && all[rndIdx] != Material.LAVA) {
+                                        break;
+                                    }
+                                } while (true);
+
+                                Block block = inFrontLoc.clone().add(x, y, z).getBlock();
+                                block.setType(all[rndIdx]);
+                            } else {
+                                Block block = inFrontLoc.clone().add(x, y, z).getBlock();
+                                block.setType(player.getInventory().getItemInMainHand().getType());
+                                block.setData(player.getInventory().getItemInMainHand().getData().getData());
+                            }
+                        }
                     }
                 }
             }
-        }
-            }.runTask(plugin);
+        }.runTask(plugin);
 
         return true;
     }
