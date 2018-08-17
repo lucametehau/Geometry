@@ -1,5 +1,6 @@
 package ro.coderdojo.geometry;
 
+import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,6 +33,8 @@ public class CubeCommand implements CommandExecutor {
             for (int x = 1; x < Integer.valueOf(args[0]); x++) {
                 for (int y = 1; y < Integer.valueOf(args[1]); y++) {
                     for (int z = 1; z < Integer.valueOf(args[2]); z++) {
+                        Random random =new Random();
+                        
                         Block block = inFrontLoc.clone().add(x,y,z).getBlock();
                         block.setType(player.getInventory().getItemInMainHand().getType());
                         block.setData(player.getInventory().getItemInMainHand().getData().getData());
